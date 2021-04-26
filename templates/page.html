@@ -1,0 +1,11 @@
+{% if response %}
+    <ul>
+    {% for page in response %}
+        <li>id:{{ page.id }}</li>
+        <li>{{ page.title }}</li>
+        <li>{{ page.text }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}

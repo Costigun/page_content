@@ -1,0 +1,12 @@
+{% if content %}
+    <ul>
+    {% for block in content %}
+        <li>id :{{ block.id }}</li>
+        <li>page_id :{{ block.page }}</li>
+        <li><a href="{{ block.video }} download">Video link</a></li>
+        <li>total views :{{ block.views }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No questions are available.</p>
+{% endif %}
