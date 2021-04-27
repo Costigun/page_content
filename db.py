@@ -24,6 +24,7 @@ class PageContent(BaseModel):
 class Page(BaseModel):
     title = CharField()
     text = TextField()
+    slug = CharField(unique=True,max_length=10)
 
 
 class PageBlock(BaseModel):

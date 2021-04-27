@@ -2,7 +2,6 @@ from aiohttp import web,ClientSession
 import db
 import jinja2
 import aiohttp_jinja2
-import aiofiles
 import asyncio
 from peewee import *
 
@@ -21,14 +20,28 @@ async def page_view(request):
 async def pagecontent_view(request):
     async with db.objects.atomic():
         param = request.rel_url.query
-        page_name = request.match_info['name']
-        page = await db.objects.get(db.Page,title=page_name)
-        content = await db.objects.execute(
-            db.PageContent.select().join(db.PageBlock).where(db.PageBlock.page == page)
-        )
+        k_slug = request.match_info['slug']
+        page = await db.objects.get(db.Page, slug=k_slug)
+
+        if 'sort_by' in param:
+            ordering = ['asc','desc']
+            sort_value = param['sort_by']
+            if sort_value in ordering:
+                if sort_value == 'desc':
+                    query = (db.PageContent
+                             .select().join(db.PageBlock).where(db.PageBlock.page == page)
+                             .order_by(db.PageContent.title.desc()))
+                else:
+                    query = (db.PageContent
+                             .select().join(db.PageBlock).where(db.PageBlock.page == page)
+                             .order_by(db.PageContent.title.asc()))
+        else:
+            query = (db.PageContent
+                     .select().join(db.PageBlock).where(db.PageBlock.page == page))
+        content = await db.objects.execute(query)
         resp = []
         for c in content:
             print(type(c))
             db.PageContent.update(views=db.PageContent.views + 1).where(db.PageContent.id == c.id).execute()
             resp.append(c)
-        return {'content':resp}
+        return {'content':resp,'main_page':page}
