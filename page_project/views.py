@@ -1,11 +1,8 @@
 import os
 from query import MEDIA
-from aiohttp import web,ClientSession
+from aiohttp import web
 import db
-import jinja2
 import aiohttp_jinja2
-import asyncio
-from peewee import *
 from aiohttp import streamer
 URL = "http://127.0.0.1:8080"
 
@@ -45,7 +42,6 @@ async def pagecontent_view(request):
         content = await db.objects.execute(query)
         resp = []
         for c in content:
-            print(type(c))
             db.PageContent.update(views=db.PageContent.views + 1).where(db.PageContent.id == c.id).execute()
             resp.append(c)
         return {'content':resp,'main_page':page,'URL':URL}

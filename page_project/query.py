@@ -4,9 +4,8 @@ import pathlib
 from db import *
 from peewee import PostgresqlDatabase
 
-BASE_DIR = pathlib.Path(__file__).parent.absolute()
-
-MEDIA = os.path.join(BASE_DIR,'media')
+BASE_DIR = pathlib.Path(__file__).parent.parent
+MEDIA = os.path.join(BASE_DIR, 'media')
 
 pg_db.connect()
 pg_db.create_tables([Page, PageContent,PageBlock])
