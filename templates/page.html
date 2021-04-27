@@ -2,7 +2,7 @@
     <ul>
     {% for page in response %}
         <li>id:{{ page.id }}</li>
-        <li>{{ page.title }}</li>
+        <li>Pag Content:<a href="http://127.0.0.1:8080/{{ page.title }}">{{page.title}}</a></li>
         <li>{{ page.text }}</li>
     {% endfor %}
     </ul>
