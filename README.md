@@ -1,14 +1,21 @@
-## Table of contents
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
-
 ## General info
-This project is simple Lorem ipsum dolor generator.
+Pages and Blocks for Pages!
 	
 ## Technologies
 Project is created with:
-* Lorem version: 12.3
-* Ipsum version: 2.33
-* Ament library version: 999
+* aiohttp
+* peewee
+* peewee-async
+* aiohttp-jinja2
+## Getting Started
+Install project:
+* python -m venv myvenv
+* venv/Scripts/activate - for Windows
+* source venv/bin/activate - for Linux
+* git clone "repository"
+* pip install -r requirements - installing all packages for project
+* python init_db.py - to create postgresql database for this project
+* cd page_project - open working directory
+* python query.py - populate database
+* python main.py - runserver
 	
