@@ -1,0 +1,8 @@
+postgres:
+  database: pw_db
+  user: pw_user
+  password: 123456
+  host: localhost
+  port: 5432
+  minsize: 1
+  maxsize: 5

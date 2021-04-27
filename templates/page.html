@@ -4,7 +4,7 @@
 
     <ul>
     {% for page in response %}
-        <li>Page Block: <a href="http://127.0.0.1:8080/{{ page.slug }}">{{page.slug}}</a></li>
+        <li>Page Block: <a href="{{URL}}/{{ page.slug }}">{{page.slug}}</a></li>
         <li>id:{{ page.id }}</li>
         <li>Title: {{ page.title }}</li>
         <li>Description: {{ page.text }}</li>

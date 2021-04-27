@@ -1,10 +1,10 @@
 import asyncio
 from peewee import *
 import logging
-from peewee_async import Manager, PostgresqlDatabase
+from peewee_async import Manager, PooledPostgresqlDatabase
 
-pg_db = PostgresqlDatabase('pw_db', user='pw_user', password='123456',
-                           host='localhost', port=5432)
+pg_db = PooledPostgresqlDatabase('pw_db', user='pw_user', password='123456',
+                           host='localhost', port=5432,max_connections=10)
 
 loop = asyncio.get_event_loop()
 objects = Manager(pg_db, loop=loop)
@@ -33,5 +33,4 @@ class PageBlock(BaseModel):
 
 
 
-pg_db.connect()
-pg_db.create_tables([Page, PageContent,PageBlock])
+

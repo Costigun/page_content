@@ -1,23 +1,22 @@
 import asyncio
 import os
 import pathlib
-from db import objects,Page,loop,PageContent,PageBlock
+from db import *
 from peewee import PostgresqlDatabase
 
 BASE_DIR = pathlib.Path(__file__).parent.absolute()
 
 MEDIA = os.path.join(BASE_DIR,'media')
 
-
-def save_file(filename):
-    return '/media/'+filename
+pg_db.connect()
+pg_db.create_tables([Page, PageContent,PageBlock])
 
 pages = [('Гастро блог','В Венеции круто!Все рестораны достойны мишлен!','gastro'),
          ('Блог переводчика!','Очень сложно знать много языков, сам путаюсь!','translator'),
          ('Блог программиста','Почему так?','wtf')]
-content = {'Пилотный пост':'choclate.jpg',
-           'Yandex или google':'mae.png',
-           'stackoverflow or github gist':'mse.png'}
+content = {'Пилотный пост':'video1.mp4',
+           'Yandex или google':'video2.mp4',
+           'stackoverflow or github gist':'video3.mp4'}
 
 
 async def populate_data():
@@ -35,3 +34,4 @@ async def populate_data():
 if __name__ == '__main__':
     loop.run_until_complete(populate_data())
     loop.close()
+    pg_db.close()

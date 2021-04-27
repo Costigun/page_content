@@ -1,12 +1,12 @@
 {% if content %}
-    <a href="http://127.0.0.1:8080/{{ main_page.slug }}?sort_by=desc">Descending</a>
-    <a href="http://127.0.0.1:8080/{{ main_page.slug }}?sort_by=asc">Ascending</a>
+    <a href="{{URL}}/{{ main_page.slug }}?sort_by=desc">Descending</a>
+    <a href="{{URL}}/{{ main_page.slug }}?sort_by=asc">Ascending</a>
     <ul>
     {% for block in content %}
         <li>id: {{ block.id }}</li>
         <li>page_id: {{ block.page }}</li>
         <li>Block name: {{ block.title }}</li>
-        <li><a href="{{ block.video }} download">Video link</a></li>
+        <li><a href="{{URL}}/file/{{ block.video }}">{{block.video}}</a></li>
         <li>total views: {{ block.views }}</li>
     {% endfor %}
     </ul>
