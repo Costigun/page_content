@@ -7,6 +7,7 @@ Project is created with:
 * peewee
 * peewee-async
 * aiohttp-jinja2
+* asyncio
 ## Getting Started
 Install project:
 * python -m venv myvenv
